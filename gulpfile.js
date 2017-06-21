@@ -49,7 +49,7 @@ gulp.task('dev', [
   'start'
 ]);
 
-gulp.task('test', ['clean', 'ts'], () => (
+gulp.task('test', ['ts'], () => (
   gulp.src([paths.spec])
     .pipe(mocha({ reporter: 'list' }))
 ));

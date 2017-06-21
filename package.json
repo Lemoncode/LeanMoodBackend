@@ -9,8 +9,8 @@
     "start:dev": "gulp build && gulp dev",
     "start:prod": "node public/app.js",
     "build": "gulp build",
-    "test": "gulp test",
-    "test:watch": "gulp test:watch"
+    "test": "npm run build && gulp test",
+    "test:watch": "npm run build && gulp test:watch"
   },
   "repository": {
     "type": "git",
