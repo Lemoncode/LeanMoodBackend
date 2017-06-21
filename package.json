@@ -1,0 +1,46 @@
+{
+  "name": "leanmood-backend",
+  "version": "1.0.0",
+  "description": "LeanMood backend",
+  "main": "public/app.js",
+  "scripts": {
+    "start": "nf start",
+    "start:dev": "gulp build && gulp dev",
+    "start:prod": "gulp build && node public/app.js",
+    "build": "gulp ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MasterLemon2016/LeanMoodBackend.git"
+  },
+  "keywords": [
+    "LeanMood",
+    "Online",
+    "Training"
+  ],
+  "author": "Lemoncode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MasterLemon2016/LeanMoodBackend/issues"
+  },
+  "homepage": "https://github.com/MasterLemon2016/LeanMoodBackend#readme",
+  "devDependencies": {
+    "@types/body-parser": "^1.16.3",
+    "@types/cors": "^2.8.1",
+    "@types/express": "^4.0.36",
+    "foreman": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-typescript": "^3.1.7",
+    "if-env": "^1.0.0",
+    "rimraf": "^2.6.1",
+    "run-sequence": "^1.2.2",
+    "typescript": "^2.3.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3"
+  }
+}
