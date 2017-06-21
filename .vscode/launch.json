@@ -14,20 +14,6 @@
       "outFiles": [
         "${workspaceRoot}/public/**/*.js"
       ]
-    },
-    {
-    "type": "node",
-    "request": "launch",
-    "name": "Launch",
-    "program": "${workspaceRoot}/src/app.ts",
-    "cwd": "${workspaceRoot}",
-    "sourceMaps": true,     
-    "outFiles": [
-         "${workspaceRoot}/public/**/*.js"
-     ],
-     "env": {
-         "NODE_ENV": "debug"
-     }
-}
+    }
   ]
 }
