@@ -3,10 +3,12 @@ const ts = require('gulp-typescript');
 const sourcemaps = require('gulp-sourcemaps');
 const nodemon = require('gulp-nodemon');
 const rimraf = require('rimraf');
+const mocha = require('gulp-mocha');
 const tsConfig = ts.createProject('./tsconfig.json');
 
 const paths = {
   ts: './src/**/*.ts',
+  spec: './public/**/*.spec.js',
   dest: './public',
   destIndex: './public/app.js',
 };
@@ -46,3 +48,12 @@ gulp.task('dev', [
   'watch',
   'start'
 ]);
+
+gulp.task('test', ['ts'], () => (
+  gulp.src([paths.spec])
+    .pipe(mocha({ reporter: 'list' }))
+));
+
+gulp.task('test:watch', ['test'], () => (
+  gulp.watch([paths.ts], ['test'])
+));

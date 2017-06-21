@@ -8,7 +8,9 @@
     "start": "nf start",
     "start:dev": "gulp build && gulp dev",
     "start:prod": "node public/app.js",
-    "build": "gulp build"
+    "build": "gulp build",
+    "test": "gulp test",
+    "test:watch": "gulp test:watch"
   },
   "repository": {
     "type": "git",
@@ -27,15 +29,21 @@
   "homepage": "https://github.com/MasterLemon2016/LeanMoodBackend#readme",
   "devDependencies": {
     "@types/body-parser": "^1.16.3",
+    "@types/chai": "^4.0.0",
     "@types/cors": "^2.8.1",
     "@types/express": "^4.0.36",
+    "@types/mocha": "^2.2.41",
+    "@types/sinon": "^2.3.1",
+    "chai": "^4.0.2",
     "foreman": "^2.0.0",
     "gulp": "^3.9.1",
+    "gulp-mocha": "^4.3.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-typescript": "^3.1.7",
     "if-env": "^1.0.0",
     "rimraf": "^2.6.1",
+    "sinon": "^1.17.7",
     "typescript": "^2.3.4"
   },
   "dependencies": {
