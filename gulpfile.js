@@ -3,7 +3,6 @@ const ts = require('gulp-typescript');
 const sourcemaps = require('gulp-sourcemaps');
 const nodemon = require('gulp-nodemon');
 const rimraf = require('rimraf');
-const runSequence = require('run-sequence');
 const tsConfig = ts.createProject('./tsconfig.json');
 
 const paths = {
@@ -21,19 +20,18 @@ gulp.task('ts', () => (
     .pipe(sourcemaps.init())
     .pipe(tsConfig())
     .js
-    .pipe(sourcemaps.write(
-      '.', {
-        includeContent: false,
-        sourceRoot: '',
-      }))
+    .pipe(sourcemaps.write('.', {
+      includeContent: false,
+      sourceRoot: '',
+    }))
     .pipe(gulp.dest(paths.dest))
 ));
 
-gulp.task('start', () => (
+gulp.task('start', () => {
   nodemon({
-    script: paths.destIndex,
+    script: paths.destIndex
   })
-));
+});
 
 gulp.task('watch', () => (
   gulp.watch([paths.ts], ['ts'])
