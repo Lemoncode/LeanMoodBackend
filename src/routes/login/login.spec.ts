@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { loginRouter } from './login';
+import { loginRouter } from './';
 
 describe('loginRouter', () => {
   it('should return true', () => {
