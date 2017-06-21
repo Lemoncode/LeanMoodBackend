@@ -5,5 +5,5 @@ export const loginRouter = Router();
 loginRouter.route('/login')
   //TODO: Replace by POST
   .get((req, res) => {
-    res.send('Login sucess!');
+    res.send('Login sucessful!');
   });

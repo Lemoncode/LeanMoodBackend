@@ -21,7 +21,11 @@ gulp.task('ts', () => (
     .pipe(sourcemaps.init())
     .pipe(tsConfig())
     .js
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write(
+      '.', {
+        includeContent: false,
+        sourceRoot: '',
+      }))
     .pipe(gulp.dest(paths.dest))
 ));
 

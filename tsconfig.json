@@ -8,7 +8,7 @@
     "sourceMap": true,
     "noLib": false,
     "outDir": "public",
-    "rootDir": "src"
+    "sourceRoot": "src"
   },
   "compileOnSave": false,
   "exclude": [
