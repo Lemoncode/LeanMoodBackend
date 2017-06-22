@@ -2,14 +2,14 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import { env } from './env.config';
-import { loginRouter } from './routes';
+import { loginRouter } from './routers';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/api', loginRouter);
+app.use('/api/login', loginRouter);
 
 app.listen(env.LM_PORT);
 
