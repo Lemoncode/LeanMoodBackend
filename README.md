@@ -1,4 +1,4 @@
-# LeanMood Backend
+# LeanMood Backend ![build_status](https://travis-ci.org/Lemoncode/LeanMoodBackend.svg?branch=master)
 
 LeanMood backend project will be a REST /JSON api, hopefully based on express, mongoose, mongodb.
 
