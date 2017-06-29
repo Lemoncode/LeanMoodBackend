@@ -11,6 +11,6 @@ app.use(cors());
 
 app.use('/api/login', loginRouter);
 
-app.listen(env.LM_PORT);
+app.listen(env.PORT);
 
-console.log(`Running on port ${env.LM_PORT}`);
+console.log(`Running on port ${env.PORT}`);
