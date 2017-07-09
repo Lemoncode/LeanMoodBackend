@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import { LoginController } from './controller';
 
 export const loginRouter = Router();
+const logincontroller = LoginController();
 
 loginRouter.route('/')
-  //TODO: Replace by POST
-  .get((req, res) => {
-    res.send('Login success!');
-  });
+.post(logincontroller.post);
+
+
