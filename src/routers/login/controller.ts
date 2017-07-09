@@ -1,23 +1,28 @@
 import { Request, Response } from 'express';
+import { Model } from 'mongoose';
+import { IUserModel } from "../../models/User";
 
-// TODO: Pass dependency with model // moongoose model
-export const LoginController = () => { 
+export const LoginController = (User: Model<IUserModel>) => { 
     const post = (req: Request, res: Response) => {
         if (req.body.loginName && req.body.password) {
-            // TODO: Use validation service. Return 403 if not ok.
-            res.status(201); // Check out the right code.
-            res.send({
-                loginName: req.body.loginName,
-                password: req.body.password,
-            });
+            // if (User) {
+            //     const user = new User(req.body);
+            //     user.save().then(result => console.log(result));
+            //     res.send(user);
+            // }
             //TODO: Use this method to generate mongo seed.
-            
         } else {
             res.status(400);
         }
     };
 
+    // TODO: Remove this method.
+    const get = (req: Request, res: Response) => {
+        res.send('Login');
+    }
+
     return {
-        post
+        post,
+        get
     }
 };

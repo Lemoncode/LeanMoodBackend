@@ -1,10 +1,16 @@
 import { Router } from 'express';
-import { LoginController } from './controller';
+import { LoginController } from './controller'; 
+import { Model } from 'mongoose';
+import { IUserModel } from '../../models/User';
 
-export const loginRouter = Router();
-const logincontroller = LoginController();
+const router = Router();
 
-loginRouter.route('/')
-.post(logincontroller.post);
+export const loginRouter = (User: Model<IUserModel>) => {
 
-
+    const logincontroller = LoginController(User);
+    router.route('/')
+        .post(logincontroller.post)
+        .get(logincontroller.get);
+    
+    return router;
+}
