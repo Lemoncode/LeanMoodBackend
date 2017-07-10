@@ -1,16 +1,13 @@
 import { Router } from 'express';
+import * as mongoose from 'mongoose';
 import { LoginController } from './controller'; 
-import { Model } from 'mongoose';
-import { IUserModel } from '../../models/User';
+import { User } from '../../models';
 
-const router = Router();
-
-export const loginRouter = (User: Model<IUserModel>) => {
-
+export const loginRouter = () => {
+    const router = Router();
     const logincontroller = LoginController(User);
     router.route('/')
-        .post(logincontroller.post)
-        .get(logincontroller.get);
+        .post(logincontroller.post);
     
     return router;
 }

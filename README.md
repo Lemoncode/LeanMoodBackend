@@ -9,4 +9,6 @@ To get backend with data, use the seed.jsom data.
 
 >mongoimport -d leanMood -c users --type json --file seed.json --jsonArray
 
-Use this command on the root folder where the file is placed. 
+Use this command on the root folder where the file is placed.
+
+Reference for arquitecture: https://blog.mlab.com/2017/05/mongodb-connection-pooling-for-express-applications/

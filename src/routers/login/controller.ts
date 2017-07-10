@@ -1,28 +1,38 @@
 import { Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { IUserModel } from "../../models/User";
+import { IUserModel, IUser } from "../../models/User";
 
 export const LoginController = (User: Model<IUserModel>) => { 
+    const handlerPost = (req: Request, res: Response) => (result: IUser) => {
+        const message: string = (result.password === req.body.password) ?
+            accessGrant(res) 
+            :
+            accessDenied(res);
+        res.send(message);
+    };
+
+    const accessGrant = (res: Response) : string => {
+        res.status(201);
+        return 'granted access';
+    };
+
+    const accessDenied = (res: Response) : string => {
+        res.status(403);
+        return 'denied access';
+    }
+
     const post = (req: Request, res: Response) => {
         if (req.body.loginName && req.body.password) {
-            // if (User) {
-            //     const user = new User(req.body);
-            //     user.save().then(result => console.log(result));
-            //     res.send(user);
-            // }
-            //TODO: Use this method to generate mongo seed.
+            User.findOne({ 'loginName' : req.body.loginName })
+                .exec()
+                .then(handlerPost(req, res))
+                .catch(err => console.log(err));
         } else {
             res.status(400);
         }
     };
 
-    // TODO: Remove this method.
-    const get = (req: Request, res: Response) => {
-        res.send('Login');
-    }
-
     return {
-        post,
-        get
+        post
     }
 };

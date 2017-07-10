@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/MasterLemon2016/LeanMoodBackend#readme",
   "devDependencies": {
+    "@types/bluebird": "^3.5.8",
     "@types/body-parser": "^1.16.3",
     "@types/chai": "^4.0.0",
     "@types/cors": "^2.8.1",
@@ -49,6 +50,7 @@
     "typescript": "^2.3.4"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
     "express": "^4.15.3",
