@@ -23,12 +23,14 @@ export const LoginController = (User: Model<IUserModel>) => {
 
     const post = (req: Request, res: Response) => {
         if (req.body.loginName && req.body.password) {
+            // TODO: Replace it. Just for testing purpose. 
             User.findOne({ 'loginName' : req.body.loginName })
                 .exec()
                 .then(handlerPost(req, res))
                 .catch(err => console.log(err));
         } else {
             res.status(400);
+            res.send('loginName and password are required')
         }
     };
 
