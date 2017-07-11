@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
-import * as bluebird from 'bluebird';
+// import * as bluebird from 'bluebird';
 import { env } from '../env.config';
 
-(<any>mongoose).Promise = bluebird;
+(<any>mongoose).Promise = Promise;
 
 const connection : mongoose.Connection = mongoose
     .createConnection(
