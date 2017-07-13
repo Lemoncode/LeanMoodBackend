@@ -11,4 +11,5 @@ To get backend with data, use the seed.jsom data.
 
 Use this command on the root folder where the file is placed.
 
-Reference for arquitecture: https://blog.mlab.com/2017/05/mongodb-connection-pooling-for-express-applications/
+Resources:
+# Mongo Lab Arquitecture Guidance(https://blog.mlab.com/2017/05/mongodb-connection-pooling-for-express-applications/) 
