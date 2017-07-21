@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { IUserModel, IUser } from "../../models/User";
+import { UserModel } from "../../models/User";
 
-export const LoginController = (User: Model<IUserModel>) => {
-  const handlerPost = (req: Request, res: Response) => (result: IUser) => {
+export const LoginController = (User: Model<UserModel>) => {
+  const handlerPost = (req: Request, res: Response) => (result: UserModel) => {
     const message: string = (result.password === req.body.password) ?
       accessGrant(res)
       :
@@ -31,8 +31,8 @@ export const LoginController = (User: Model<IUserModel>) => {
           res.sendStatus(401);
         });
     } else {
-      res.status(400)
-        .send('loginName and password are required');
+      res.status(400);
+      res.send('loginName and password are required');
     }
   };
 

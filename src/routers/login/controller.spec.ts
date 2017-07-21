@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import { LoginController } from './controller';
 import { Model } from 'mongoose';
-import { IUserModel, IUser } from "../../models/User";
+import { UserModel } from "../../models/User";
 import { Request, Response } from 'express';
 import * as models from '../../models';
 
@@ -27,7 +27,7 @@ describe('LoginController test', () => {
   describe('post', () => {
     it('should not allowed empty loginName', () => {
       // Arrange
-      const User: Model<IUserModel> = <Model<IUserModel>><any>(function () { });
+      const User: Model<UserModel> = <Model<UserModel>><any>(function () { });
       const req: Request = <Request><any>(
         {
           body: {
@@ -53,7 +53,7 @@ describe('LoginController test', () => {
 
     it('should not allowed empty password', () => {
       // Arrange
-      const User: Model<IUserModel> = <Model<IUserModel>><any>(function () { });
+      const User: Model<UserModel> = <Model<UserModel>><any>(function () { });
       const req: Request = <Request><any>(
         {
           body: {
@@ -97,7 +97,7 @@ describe('LoginController test', () => {
         return this;
       };
 
-      const loginController = LoginController(<Model<IUserModel>><any>(new UserMock()));
+      const loginController = LoginController(<Model<UserModel>><any>(new UserMock()));
 
       // Act
       loginController.post(req, res);
@@ -129,7 +129,7 @@ describe('LoginController test', () => {
         return this;
       };
 
-      const loginController = LoginController(<Model<IUserModel>><any>(new UserMock()));
+      const loginController = LoginController(<Model<UserModel>><any>(new UserMock()));
 
       // Act
       loginController.post(req, res);

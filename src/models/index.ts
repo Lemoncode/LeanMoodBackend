@@ -1,5 +1,5 @@
 import connection from '../dbs';
-import { IUserModel, userSchema } from './User';
+import { UserModel, userSchema } from './User';
 import { Model } from 'mongoose';
 
-export const User: Model<IUserModel> = connection.model<IUserModel>('User', userSchema);
+export const User: Model<UserModel> = connection.model<UserModel>('User', userSchema);
