@@ -7,138 +7,138 @@ import { Request, Response } from 'express';
 import * as models from '../../models';
 
 describe('LoginController test', () => {
-    var UserMock = function () {};
-    beforeEach(() => {
-        UserMock.prototype.findOne = function () {
-            return this;
-        };
-        UserMock.prototype.exec = function () {
-            return this;
-        };
-        UserMock.prototype.then = function() {
-            return this;
-        };
+  var UserMock = function () { };
+  beforeEach(() => {
+    UserMock.prototype.findOne = function () {
+      return this;
+    };
+    UserMock.prototype.exec = function () {
+      return this;
+    };
+    UserMock.prototype.then = function () {
+      return this;
+    };
 
-        UserMock.prototype.catch = function () {
-            return this;
-        };
+    UserMock.prototype.catch = function () {
+      return this;
+    };
+  });
+
+  describe('post', () => {
+    it('should not allowed empty loginName', () => {
+      // Arrange
+      const User: Model<IUserModel> = <Model<IUserModel>><any>(function () { });
+      const req: Request = <Request><any>(
+        {
+          body: {
+            password: 'test',
+          }
+        }
+      );
+      const res: Response = <Response><any>({
+        status: sinon.spy(),
+        send: sinon.spy(),
+      });
+      const loginController = LoginController(User);
+
+      // Act
+      loginController.post(req, res)
+
+      // Assert
+      const spyResStatus = <sinon.SinonSpy>res.status;
+      const spyResSend = <sinon.SinonSpy>res.send;
+      expect(spyResStatus.calledWith(400)).to.be.true;
+      expect(spyResSend.calledWith('loginName and password are required')).to.be.true;
     });
 
-    describe('post', () => {
-        it('should not allowed empty loginName', () => {
-            // Arrange
-            const User: Model<IUserModel> = <Model<IUserModel>><any>(function() {});
-            const req: Request = <Request><any>(
-                {
-                    body: {
-                        password: 'test',
-                    }
-                }
-            );
-            const res: Response = <Response><any>({
-                status: sinon.spy(),
-                send: sinon.spy(),
-            });
-            const loginController = LoginController(User);
+    it('should not allowed empty password', () => {
+      // Arrange
+      const User: Model<IUserModel> = <Model<IUserModel>><any>(function () { });
+      const req: Request = <Request><any>(
+        {
+          body: {
+            loginName: 'jai',
+          }
+        }
+      );
+      const res: Response = <Response><any>({
+        status: sinon.spy(),
+        send: sinon.spy(),
+      });
+      const loginController = LoginController(User);
 
-            // Act
-            loginController.post(req, res)
-            
-            // Assert 
-            const spyResStatus = <sinon.SinonSpy>res.status;
-            const spyResSend = <sinon.SinonSpy>res.send;
-            expect(spyResStatus.calledWith(400)).to.be.true;  
-            expect(spyResSend.calledWith('loginName and password are required')).to.be.true;
-        });
+      // Act
+      loginController.post(req, res);
 
-        it('should not allowed empty password', () => {
-            // Arrange
-            const User: Model<IUserModel> = <Model<IUserModel>><any>(function() {});
-            const req: Request = <Request><any>(
-                {
-                    body: {
-                        loginName: 'jai',
-                    }
-                }
-            );
-            const res: Response = <Response><any>({
-                status: sinon.spy(),
-                send: sinon.spy(),
-            });
-            const loginController = LoginController(User);
-
-            // Act
-            loginController.post(req, res);
-            
-            // Assert 
-            const spyResStatus = <sinon.SinonSpy>res.status;
-            const spyResSend = <sinon.SinonSpy>res.send;
-            expect(spyResStatus.calledWith(400)).to.be.true;  
-            expect(spyResSend.calledWith('loginName and password are required')).to.be.true;
-        });
-
-        it('should return granted access when users exists and password matches', () =>{
-            // Arrange
-            const req: Request = <Request><any>(
-                {
-                    body: {
-                        loginName: 'jai',
-                        password: 'test',
-                    }
-                }
-            );
-            const res: Response = <Response><any>({
-                status: sinon.spy(),
-                send: sinon.spy(),
-            });
-
-            UserMock.prototype.then = function(callback) {
-                callback({ password: 'test' });
-                return this;
-            };
-
-            const loginController = LoginController(<Model<IUserModel>><any>(new UserMock()));
-
-            // Act
-            loginController.post(req, res);
-
-            // Assert
-            const spyResStatus = <sinon.SinonSpy>res.status;
-            const spyResSend = <sinon.SinonSpy>res.send;
-            expect(spyResStatus.calledWith(201)).to.be.true;
-            expect(spyResSend.calledWith('granted access')).to.be.true;
-        });
-
-        it('should return denied access when users exists and password does not match', () =>{
-            // Arrange
-            const req: Request = <Request><any>(
-                {
-                    body: {
-                        loginName: 'jai',
-                        password: 'test',
-                    }
-                }
-            );
-            const res: Response = <Response><any>({
-                status: sinon.spy(),
-                send: sinon.spy(),
-            });
-
-            UserMock.prototype.then = function(callback) {
-                callback({ password: 'what ever' });
-                return this;
-            };
-
-            const loginController = LoginController(<Model<IUserModel>><any>(new UserMock()));
-
-            // Act
-            loginController.post(req, res);
-
-            // Assert
-            const spyResStatus = <sinon.SinonSpy>res.status;
-            const spyResSend = <sinon.SinonSpy>res.send;
-            expect(spyResStatus.calledWith(403)).to.be.true;
-            expect(spyResSend.calledWith('denied access')).to.be.true;
-        });
+      // Assert
+      const spyResStatus = <sinon.SinonSpy>res.status;
+      const spyResSend = <sinon.SinonSpy>res.send;
+      expect(spyResStatus.calledWith(400)).to.be.true;
+      expect(spyResSend.calledWith('loginName and password are required')).to.be.true;
     });
+
+    it('should return granted access when users exists and password matches', () => {
+      // Arrange
+      const req: Request = <Request><any>(
+        {
+          body: {
+            loginName: 'jai',
+            password: 'test',
+          }
+        }
+      );
+      const res: Response = <Response><any>({
+        status: sinon.spy(),
+        send: sinon.spy(),
+      });
+
+      UserMock.prototype.then = function (callback) {
+        callback({ password: 'test' });
+        return this;
+      };
+
+      const loginController = LoginController(<Model<IUserModel>><any>(new UserMock()));
+
+      // Act
+      loginController.post(req, res);
+
+      // Assert
+      const spyResStatus = <sinon.SinonSpy>res.status;
+      const spyResSend = <sinon.SinonSpy>res.send;
+      expect(spyResStatus.calledWith(201)).to.be.true;
+      expect(spyResSend.calledWith('granted access')).to.be.true;
+    });
+
+    it('should return denied access when users exists and password does not match', () => {
+      // Arrange
+      const req: Request = <Request><any>(
+        {
+          body: {
+            loginName: 'jai',
+            password: 'test',
+          }
+        }
+      );
+      const res: Response = <Response><any>({
+        status: sinon.spy(),
+        send: sinon.spy(),
+      });
+
+      UserMock.prototype.then = function (callback) {
+        callback({ password: 'what ever' });
+        return this;
+      };
+
+      const loginController = LoginController(<Model<IUserModel>><any>(new UserMock()));
+
+      // Act
+      loginController.post(req, res);
+
+      // Assert
+      const spyResStatus = <sinon.SinonSpy>res.status;
+      const spyResSend = <sinon.SinonSpy>res.send;
+      expect(spyResStatus.calledWith(403)).to.be.true;
+      expect(spyResSend.calledWith('denied access')).to.be.true;
+    });
+  });
 });
