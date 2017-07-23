@@ -22,6 +22,8 @@ export const LoginController = (User: Model<UserModel>) => {
   }
 
   const post = (req: Request, res: Response) => {
+    console.log('Cookies', req.cookies);
+    console.log('Request body: ', req.body);
     if (req.body.loginName && req.body.password) {
       User.findOne({ 'loginName': req.body.loginName })
         .exec()
@@ -36,7 +38,13 @@ export const LoginController = (User: Model<UserModel>) => {
     }
   };
 
+  const get = (req: Request, res: Response) => {
+    res.cookie('cookie-name', 'cookie-test-value'); // 30 seconds, working on postman
+    res.send('Hello from login API LeanMood'); // TODO: Include cookies
+  };
+
   return {
-    post
+    post,
+    get,
   }
 };
