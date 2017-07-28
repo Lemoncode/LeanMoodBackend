@@ -10,7 +10,8 @@
     "start:prod": "node public/app.js",
     "build": "gulp build",
     "test": "npm run build && gulp test",
-    "test:watch": "npm run build && gulp test:watch"
+    "test:watch": "npm run build && gulp test:watch",
+    "lint": "./node_modules/.bin/tslint -c ./tslint.json --force src/**/*.ts"
   },
   "repository": {
     "type": "git",
