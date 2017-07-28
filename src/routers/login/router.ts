@@ -10,4 +10,4 @@ export const loginRouter = () => {
     .post(logincontroller.post);
 
   return router;
-}
+};

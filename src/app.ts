@@ -12,4 +12,5 @@ app.use(cors());
 app.use('/api/login', loginRouter());
 app.listen(env.PORT);
 
+// tslint:disable-next-line:no-console
 console.log(`Running on port ${env.PORT}`);

@@ -2,24 +2,25 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import { LoginController } from './controller';
 import { Model } from 'mongoose';
-import { UserModel } from "../../models/User";
+import { UserModel } from '../../models/User';
 import { Request, Response } from 'express';
 import * as models from '../../models';
 
+// tslint:disable:no-unused-expression
 describe('LoginController test', () => {
-  var UserMock = function () { };
+  const UserMock = function() { };
   beforeEach(() => {
-    UserMock.prototype.findOne = function () {
+    UserMock.prototype.findOne = function() {
       return this;
     };
-    UserMock.prototype.exec = function () {
+    UserMock.prototype.exec = function() {
       return this;
     };
-    UserMock.prototype.then = function () {
+    UserMock.prototype.then = function() {
       return this;
     };
 
-    UserMock.prototype.catch = function () {
+    UserMock.prototype.catch = function() {
       return this;
     };
   });
@@ -27,12 +28,12 @@ describe('LoginController test', () => {
   describe('post', () => {
     it('should not allowed empty loginName', () => {
       // Arrange
-      const User: Model<UserModel> = <Model<UserModel>><any>(function () { });
+      const User: Model<UserModel> = <Model<UserModel>><any>(function() { });
       const req: Request = <Request><any>(
         {
           body: {
             password: 'test',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
@@ -42,7 +43,7 @@ describe('LoginController test', () => {
       const loginController = LoginController(User);
 
       // Act
-      loginController.post(req, res)
+      loginController.post(req, res);
 
       // Assert
       const spyResStatus = <sinon.SinonSpy>res.status;
@@ -53,12 +54,12 @@ describe('LoginController test', () => {
 
     it('should not allowed empty password', () => {
       // Arrange
-      const User: Model<UserModel> = <Model<UserModel>><any>(function () { });
+      const User: Model<UserModel> = <Model<UserModel>><any>(function() { });
       const req: Request = <Request><any>(
         {
           body: {
             loginName: 'jai',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
@@ -84,7 +85,7 @@ describe('LoginController test', () => {
           body: {
             loginName: 'jai',
             password: 'test',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
@@ -92,7 +93,7 @@ describe('LoginController test', () => {
         send: sinon.spy(),
       });
 
-      UserMock.prototype.then = function (callback) {
+      UserMock.prototype.then = function(callback) {
         callback({ password: 'test' });
         return this;
       };
@@ -116,7 +117,7 @@ describe('LoginController test', () => {
           body: {
             loginName: 'jai',
             password: 'test',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
@@ -124,7 +125,7 @@ describe('LoginController test', () => {
         send: sinon.spy(),
       });
 
-      UserMock.prototype.then = function (callback) {
+      UserMock.prototype.then = function(callback) {
         callback({ password: 'what ever' });
         return this;
       };
