@@ -42,10 +42,12 @@
     "gulp-mocha": "^4.3.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-sourcemaps": "^2.6.0",
+    "gulp-tslint": "^8.1.1",
     "gulp-typescript": "^3.1.7",
     "if-env": "^1.0.0",
     "rimraf": "^2.6.1",
     "sinon": "^1.17.7",
+    "tslint": "^5.5.0",
     "typescript": "^2.3.4"
   },
   "dependencies": {
