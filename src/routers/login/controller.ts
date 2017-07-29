@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { UserModel } from "../../models/User";
+import { UserModel } from '../../models/User';
 
 export const LoginController = (User: Model<UserModel>) => {
   const handlerPost = (req: Request, res: Response) => (result: UserModel) => {
     const message: string = (result.password === req.body.password) ?
-      accessGrant(res)
-      :
+      accessGrant(res) :
       accessDenied(res);
     res.send(message);
   };
@@ -19,14 +18,15 @@ export const LoginController = (User: Model<UserModel>) => {
   const accessDenied = (res: Response): string => {
     res.status(403);
     return 'denied access';
-  }
+  };
 
   const post = (req: Request, res: Response) => {
     if (req.body.loginName && req.body.password) {
-      User.findOne({ 'loginName': req.body.loginName })
+      User.findOne({ loginName: req.body.loginName })
         .exec()
         .then(handlerPost(req, res))
-        .catch(err => {
+        .catch((err) => {
+          // tslint:disable-next-line:no-console
           console.log(err);
           res.sendStatus(401);
         });
@@ -37,6 +37,6 @@ export const LoginController = (User: Model<UserModel>) => {
   };
 
   return {
-    post
-  }
+    post,
+  };
 };

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import * as mongoose from 'mongoose';
 import { LoginController } from './controller';
 import { User } from '../../models';
 
@@ -10,4 +9,4 @@ export const loginRouter = () => {
     .post(logincontroller.post);
 
   return router;
-}
+};

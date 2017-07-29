@@ -5,19 +5,31 @@ const nodemon = require('gulp-nodemon');
 const rimraf = require('rimraf');
 const mocha = require('gulp-mocha');
 const tsConfig = ts.createProject('./tsconfig.json');
+const tslint = require('gulp-tslint');
 
 const paths = {
   ts: './src/**/*.ts',
   spec: './public/**/*.spec.js',
   dest: './public',
   destIndex: './public/app.js',
+  tslintConfig: './tslint.json',
 };
 
 gulp.task('clean', (callback) => (
   rimraf(paths.dest, callback)
 ));
 
-gulp.task('ts', () => (
+gulp.task('tslint', () => (
+  gulp.src(paths.ts)
+    .pipe(tslint({
+      configuration: paths.tslintConfig,
+    }))
+    .pipe(tslint.report({
+      summarizeFailureOutput: true,
+    }))
+));
+
+gulp.task('ts', ['tslint'], () => (
   gulp.src(paths.ts)
     .pipe(sourcemaps.init())
     .pipe(tsConfig())
@@ -41,7 +53,7 @@ gulp.task('watch', () => (
 
 gulp.task('build', [
   'clean',
-  'ts'
+  'ts',
 ]);
 
 gulp.task('dev', [
