@@ -1,26 +1,12 @@
 import * as mongoose from 'mongoose';
+import { TrainingModel, trainingSchema } from './Training';
 
 export interface UserModel extends mongoose.Document {
-  loginName: string,
-  password: string,
+  email: string,
+  trainings: TrainingModel[],
 }
 
 export const userSchema = new mongoose.Schema({
-  loginName: String,
-  password: String,
+  email: String,
+  trainings: [trainingSchema],
 });
-
-
-/*
-TODO: Review database design.
-Client object:
-export class LoginCredentials {
-  public login: string;
-  public password: string;
-
-  constructor() {
-    this.login = '';
-    this.password = '';
-  }
-}
-*/

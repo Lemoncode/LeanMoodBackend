@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { UserModel } from "../../models/User";
+import { LoginModel } from "../../models/Login";
 
-export const LoginController = (User: Model<UserModel>) => {
-  const handlerPost = (req: Request, res: Response) => (result: UserModel) => {
+export const LoginController = (Login: Model<LoginModel>) => {
+  const handlerPost = (req: Request, res: Response) => (result: LoginModel) => {
     const message: string = (result.password === req.body.password) ?
       accessGrant(res)
       :
@@ -22,10 +22,8 @@ export const LoginController = (User: Model<UserModel>) => {
   }
 
   const post = (req: Request, res: Response) => {
-    console.log('Cookies', req.cookies);
-    console.log('Request body: ', req.body);
-    if (req.body.loginName && req.body.password) {
-      User.findOne({ 'loginName': req.body.loginName })
+    if (req.body.email && req.body.password) {
+      Login.findOne({'email': req.body.email })
         .exec()
         .then(handlerPost(req, res))
         .catch(err => {
@@ -34,7 +32,7 @@ export const LoginController = (User: Model<UserModel>) => {
         });
     } else {
       res.status(400);
-      res.send('loginName and password are required');
+      res.send('email and password are required');
     }
   };
 
@@ -45,6 +43,6 @@ export const LoginController = (User: Model<UserModel>) => {
 
   return {
     post,
-    get,
+    get, // TODO: Remove get action.
   }
 };

@@ -2,32 +2,31 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import { LoginController } from './controller';
 import { Model } from 'mongoose';
-import { UserModel } from "../../models/User";
+import { LoginModel } from "../../models/Login";
 import { Request, Response } from 'express';
 import * as models from '../../models';
 
 describe('LoginController test', () => {
-  var UserMock = function () { };
+  var LoginMock = function () { };
   beforeEach(() => {
-    UserMock.prototype.findOne = function () {
+    LoginMock.prototype.findOne = function () {
       return this;
     };
-    UserMock.prototype.exec = function () {
+    LoginMock.prototype.exec = function () {
       return this;
     };
-    UserMock.prototype.then = function () {
+    LoginMock.prototype.then = function () {
       return this;
     };
-
-    UserMock.prototype.catch = function () {
+    LoginMock.prototype.catch = function () {
       return this;
     };
   });
 
   describe('post', () => {
-    it('should not allowed empty loginName', () => {
+    it('should not allowed empty email', () => {
       // Arrange
-      const User: Model<UserModel> = <Model<UserModel>><any>(function () { });
+      const Login: Model<LoginModel> = <Model<LoginModel>><any>(function () { });
       const req: Request = <Request><any>(
         {
           body: {
@@ -39,7 +38,7 @@ describe('LoginController test', () => {
         status: sinon.spy(),
         send: sinon.spy(),
       });
-      const loginController = LoginController(User);
+      const loginController = LoginController(Login);
 
       // Act
       loginController.post(req, res)
@@ -48,16 +47,16 @@ describe('LoginController test', () => {
       const spyResStatus = <sinon.SinonSpy>res.status;
       const spyResSend = <sinon.SinonSpy>res.send;
       expect(spyResStatus.calledWith(400)).to.be.true;
-      expect(spyResSend.calledWith('loginName and password are required')).to.be.true;
+      expect(spyResSend.calledWith('email and password are required')).to.be.true;
     });
 
     it('should not allowed empty password', () => {
       // Arrange
-      const User: Model<UserModel> = <Model<UserModel>><any>(function () { });
+      const User: Model<LoginModel> = <Model<LoginModel>><any>(function () { });
       const req: Request = <Request><any>(
         {
           body: {
-            loginName: 'jai',
+            email: 'jai',
           }
         }
       );
@@ -74,7 +73,7 @@ describe('LoginController test', () => {
       const spyResStatus = <sinon.SinonSpy>res.status;
       const spyResSend = <sinon.SinonSpy>res.send;
       expect(spyResStatus.calledWith(400)).to.be.true;
-      expect(spyResSend.calledWith('loginName and password are required')).to.be.true;
+      expect(spyResSend.calledWith('email and password are required')).to.be.true;
     });
 
     it('should return granted access when users exists and password matches', () => {
@@ -82,7 +81,7 @@ describe('LoginController test', () => {
       const req: Request = <Request><any>(
         {
           body: {
-            loginName: 'jai',
+            email: 'jai',
             password: 'test',
           }
         }
@@ -92,12 +91,12 @@ describe('LoginController test', () => {
         send: sinon.spy(),
       });
 
-      UserMock.prototype.then = function (callback) {
+      LoginMock.prototype.then = function (callback) {
         callback({ password: 'test' });
         return this;
       };
 
-      const loginController = LoginController(<Model<UserModel>><any>(new UserMock()));
+      const loginController = LoginController(<Model<LoginModel>><any>(new LoginMock()));
 
       // Act
       loginController.post(req, res);
@@ -114,7 +113,7 @@ describe('LoginController test', () => {
       const req: Request = <Request><any>(
         {
           body: {
-            loginName: 'jai',
+            email: 'jai',
             password: 'test',
           }
         }
@@ -124,12 +123,12 @@ describe('LoginController test', () => {
         send: sinon.spy(),
       });
 
-      UserMock.prototype.then = function (callback) {
+      LoginMock.prototype.then = function (callback) {
         callback({ password: 'what ever' });
         return this;
       };
 
-      const loginController = LoginController(<Model<UserModel>><any>(new UserMock()));
+      const loginController = LoginController(<Model<LoginModel>><any>(new LoginMock()));
 
       // Act
       loginController.post(req, res);
