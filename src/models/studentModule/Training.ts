@@ -4,8 +4,12 @@ export interface TrainingModel {
   markdownContent: string;
 }
 
-export const createEmptyTraining = (): TrainingModel => ({
-  id: '',
-  name: '',
-  markdownContent: '',
+export const getTrainingById = (id: string): TrainingModel => ({
+  id,
+  name: 'Máster Front-End Lemoncode',
+  /* tslint:disable:max-line-length */
+  markdownContent: `
+## Module 1 - UX + Design
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum`,
 });

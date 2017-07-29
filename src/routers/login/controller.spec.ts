@@ -4,7 +4,6 @@ import { LoginController } from './controller';
 import { Model } from 'mongoose';
 import { UserModel } from '../../models/User';
 import { Request, Response } from 'express';
-import * as models from '../../models';
 
 // tslint:disable:no-unused-expression
 describe('LoginController test', () => {

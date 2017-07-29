@@ -6,10 +6,13 @@ export interface StudentModel {
   isActive: boolean;
 }
 
-export const createEmptyStudent = (): StudentModel => ({
-  id: '',
-  fullname: '',
-  email: '',
-  phoneNumber: '',
-  isActive: false,
-});
+// TODO: Remove when connect with mongoose
+export const getMockStudents = (): StudentModel[] => ([
+  {
+    id: '1',
+    email: 'testEmail@lemoncode.net',
+    fullname: 'Test Name',
+    isActive: true,
+    phoneNumber: '123456',
+  },
+]);
