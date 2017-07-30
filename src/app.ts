@@ -8,6 +8,13 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+// Additional configuration to make CORS working
+// Once we get to a more mature state we have to 
+// fine tune the origing domain, etc...
+// https://www.npmjs.com/package/cors
+// https://stackoverflow.com/questions/7067966/how-to-allow-cors
+app.use(cors({credentials: true, origin: true}));
+
 
 app.use('/api/login', loginRouter());
 app.listen(env.PORT);
