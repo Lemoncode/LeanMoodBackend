@@ -36,13 +36,7 @@ export const LoginController = (Login: Model<LoginModel>) => {
     }
   };
 
-  const get = (req: Request, res: Response) => {
-    res.cookie('cookie-name', 'cookie-test-value'); // 30 seconds, working on postman
-    res.send('Hello from login API LeanMood'); // TODO: Include cookies
-  };
-
   return {
-    post,
-    get, // TODO: Remove get action.
+    post
   }
 };
