@@ -1,0 +1,55 @@
+[{
+	"_id": {
+		"$oid": "597dfe45b02a8a14c88e028d"
+	},
+	"name": "JavaScript basics",
+	"markdownContent": "\n            ### Items\n            **Course Items** have the related duration:\n            Item     | Duration\n            -------- | ---\n            Module A | 2h\n            Module B | 5h\n            Module C | 6h",
+	"files": [
+		{
+			"name": "Module_A",
+			"size": 11,
+			"_id": {
+				"$oid": "597dfe45b02a8a14c88e028f"
+			}
+		},
+		{
+			"name": "Module_B",
+			"size": 12,
+			"_id": {
+				"$oid": "597dfe45b02a8a14c88e028e"
+			}
+		}
+	],
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "597dfe45b02a8a14c88e0290"
+	},
+	"name": "Maths for beginners",
+	"markdownContent": "\n            ### Items\n            **Course Items** have the related duration:\n            Item     | Duration\n            -------- | ---\n            Module A | 1h\n            Module B | 1h\n            Module C | 1h",
+	"files": [
+		{
+			"name": "Module_A",
+			"size": 5,
+			"_id": {
+				"$oid": "597dfe45b02a8a14c88e0293"
+			}
+		},
+		{
+			"name": "Module_B",
+			"size": 2,
+			"_id": {
+				"$oid": "597dfe45b02a8a14c88e0292"
+			}
+		},
+		{
+			"name": "Module_C",
+			"size": 3,
+			"_id": {
+				"$oid": "597dfe45b02a8a14c88e0291"
+			}
+		}
+	],
+	"__v": 0
+}]
