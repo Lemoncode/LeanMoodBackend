@@ -2,24 +2,24 @@
 	"_id": {
 		"$oid": "597db4308583ff17ac43ef52"
 	},
-	"email": "joe.doe@foo.com",
-	"password": "test",
+	"email": "trainer@sample.com",
+	"password": "testr",
 	"__v": 0
 },
 {
 	"_id": {
 		"$oid": "597db4308583ff17ac43ef54"
 	},
-	"email": "jane.doe@foo.com",
-	"password": "test",
+	"email": "admin@sample.com",
+	"password": "testr",
 	"__v": 0
 },
 {
 	"_id": {
 		"$oid": "597db4308583ff17ac43ef55"
 	},
-	"email": "rob.doe@foo.com",
-	"password": "test",
+	"email": "student@sample.com",
+	"password": "testr",
 	"__v": 0
 }]
 
