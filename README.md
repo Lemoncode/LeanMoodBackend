@@ -49,6 +49,8 @@ use leanMood
 - Let's import the user seed data (you will run this just from the command prompt, do not connect to mongo cli).
 
 ```cmd
+mongoimport -d leanMoodAccess -c logins --type json --file ./meta/data/login.seed.json --jsonArray
+mongoimport -d leanMood -c trainings --type json --file ./meta/data/training.seed.json --jsonArray
 mongoimport -d leanMood -c users --type json --file ./meta/data/user.seed.json --jsonArray
 ```
 
@@ -76,7 +78,7 @@ sen a query like:
     - Command: POST
     - Headers:
 
-```cmd    
+```cmd
     Cotent-Type: 'application/json'
 ```
 
@@ -97,4 +99,4 @@ sen a query like:
 
 Resources:
 
-[Mongo Lab Arquitecture Guidance](https://blog.mlab.com/2017/05/mongodb-connection-pooling-for-express-applications/) 
+[Mongo Lab Arquitecture Guidance](https://blog.mlab.com/2017/05/mongodb-connection-pooling-for-express-applications/)
