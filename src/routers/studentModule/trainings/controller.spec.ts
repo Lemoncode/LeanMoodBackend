@@ -6,14 +6,29 @@ import { TrainingsController } from './controller';
 
 // tslint:disable:no-unused-expression
 describe('TrainingsController', () => {
+  const TrainingMock = function() { };
+
+  beforeEach(() => {
+    TrainingMock.prototype.findById = function() {
+      return this;
+    };
+    TrainingMock.prototype.exec = function() {
+      return this;
+    };
+    TrainingMock.prototype.then = function() {
+      return this;
+    };
+    TrainingMock.prototype.catch = function() {
+      return this;
+    };
+  });
   describe('url: "/trainings/:id" method: "get"', () => {
     it('should return a training object', () => {
       // Arrange
-      const id = '1';
       const trainingModel: TrainingModel = {
-        id,
         name: 'test name',
         markdownContent: 'test markdownContent',
+        files: [],
       };
 
       const TrainingMock = {

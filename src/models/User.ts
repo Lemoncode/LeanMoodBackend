@@ -1,11 +1,11 @@
 import * as mongoose from 'mongoose';
-import { TrainingModel, trainingSchema } from './Training';
 
 export interface UserModel extends mongoose.Document {
   email: string;
   name: string;
   lastName: string;
   avatar: string;
+  // TODO: Add type string[] when front-end implement role dashboard
   role: string;
   trainings: UserTraining[];
 }
