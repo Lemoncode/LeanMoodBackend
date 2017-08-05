@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { LoginModel } from "../../models/Login";
 import { UserModel } from "../../models/User";
 
-export const LoginController = (Login: Model<LoginModel>, user: Model<UserModel>) => {
+export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>) => {
   const handlerPost = (req: Request, res: Response) => (result: LoginModel) => {
     (result.password === req.body.password) ?
       accessGrant(res, result) :
@@ -11,7 +11,7 @@ export const LoginController = (Login: Model<LoginModel>, user: Model<UserModel>
   };
 
   const accessGrant = (res: Response, loginModel: LoginModel) => {
-    user.findOne({ email: loginModel.email })
+    User.findOne({ email: loginModel.email })
       .exec()
       .then(handleUserRequest(res))
       .catch(() => res.sendStatus(400))
