@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { LoginController } from './controller';
-import { User } from '../../models';
+import { Login, User } from '../../models';
 
 export const loginRouter = () => {
   const router = Router();
-  const logincontroller = LoginController(User);
+  const logincontroller = LoginController(Login, User);
   router.route('/')
     .post(logincontroller.post);
 
