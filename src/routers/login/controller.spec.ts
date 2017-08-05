@@ -5,7 +5,6 @@ import { Model } from 'mongoose';
 import { LoginModel } from '../../models/Login';
 import { UserModel } from '../../models/user';
 import { Request, Response } from 'express';
-import * as models from '../../models';
 
 describe('LoginController test', () => {
   const LoginMock = function() { };

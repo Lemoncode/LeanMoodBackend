@@ -3,7 +3,7 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import { env } from './env.config';
-import { loginRouter } from './routers';
+import { loginRouter, studentModuleRouter } from './routers';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use(cors({ credentials: true, origin: true }));
 
 app.use('/api/login', loginRouter());
+app.use('/api/studentModule', studentModuleRouter());
 app.listen(env.PORT);
 
 // tslint:disable-next-line:no-console
