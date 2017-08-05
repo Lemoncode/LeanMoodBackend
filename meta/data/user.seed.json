@@ -1,0 +1,81 @@
+[{
+	"_id": {
+		"$oid": "597e01ba8be16426185a796d"
+	},
+	"email": "trainer@sample.com",
+	"name": "Joe",
+	"lastName": "Doe",
+	"avatar": "https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-64.png",
+	"role": "trainer",
+	"trainings": [
+		{
+			"role": "trainer",
+			"trainingId": "597dfe45b02a8a14c88e028d",
+			"_id": {
+				"$oid": "597e01ba8be16426185a796f"
+			}
+		},
+		{
+			"role": "student",
+			"trainingId": "597dfe45b02a8a14c88e0290",
+			"_id": {
+				"$oid": "597e01ba8be16426185a796e"
+			}
+		}
+	],
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "597e01ba8be16426185a7971"
+	},
+	"email": "student@sample.com",
+	"name": "Rob",
+	"lastName": "Doe",
+	"avatar": "https://cdn1.iconfinder.com/data/icons/user-pictures/100/boy-64.png",
+	"role": "student",
+	"trainings": [
+		{
+			"role": "student",
+			"trainingId": "597dfe45b02a8a14c88e028d",
+			"_id": {
+				"$oid": "597e01ba8be16426185a7973"
+			}
+		},
+		{
+			"role": "student",
+			"trainingId": "597dfe45b02a8a14c88e0290",
+			"_id": {
+				"$oid": "597e01ba8be16426185a7972"
+			}
+		}
+	],
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "597e01ba8be16426185a7974"
+	},
+	"email": "admin@sample.com",
+	"name": "Jane",
+	"lastName": "Doe",
+	"avatar": "https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-64.png",
+	"role": "admin",
+	"trainings": [
+		{
+			"role": "teacher",
+			"trainingId": "597dfe45b02a8a14c88e028d",
+			"_id": {
+				"$oid": "597e01ba8be16426185a7976"
+			}
+		},
+		{
+			"role": "teacher",
+			"trainingId": "597dfe45b02a8a14c88e0290",
+			"_id": {
+				"$oid": "597e01ba8be16426185a7975"
+			}
+		}
+	],
+	"__v": 0
+}]
