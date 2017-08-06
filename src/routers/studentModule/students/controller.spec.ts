@@ -4,7 +4,6 @@ import { Request, Response } from 'express';
 import { StudentModel } from '../../../models/studentModule';
 import { StudentsController } from './controller';
 
-// tslint:disable:no-unused-expression
 describe('StudentsController', () => {
   describe('url: "/students/" method: "get"', () => {
     it('should return a student array', () => {

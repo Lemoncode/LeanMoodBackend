@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
+import { Model } from 'mongoose';
 import { Request, Response } from 'express';
 import { TrainingModel } from '../../../models/studentModule';
 import { TrainingsController } from './controller';
 
-// tslint:disable:no-unused-expression
 describe('TrainingsController', () => {
   const TrainingMock = function() { };
 
@@ -23,24 +23,15 @@ describe('TrainingsController', () => {
     };
   });
   describe('url: "/trainings/:id" method: "get"', () => {
-    it('should return a training object', () => {
+    it('should return a 200 and training object when find training succes', () => {
       // Arrange
-      const trainingModel: TrainingModel = {
-        name: 'test name',
-        markdownContent: 'test markdownContent',
-        files: [],
-      };
+      const Training: Model<TrainingModel> = new TrainingMock();
 
-      const TrainingMock = {
-        getTrainingById: sinon.spy(function(trainingId: string) {
-          return trainingModel;
-        }),
-      };
-      const trainingsController = TrainingsController(TrainingMock);
+      const trainingsController = TrainingsController(Training);
 
       const req: Request = <Request><any>{
         params: {
-          id,
+          id: 'test id',
         },
       };
       const res: Response = <Response><any>{
@@ -48,15 +39,61 @@ describe('TrainingsController', () => {
         status: sinon.spy(function() { return this; }),
       };
 
+      const expectedTraining: Partial<TrainingModel> = {
+        id: req.params.id,
+        name: 'test name',
+        markdownContent: 'test markdownContent',
+        files: [],
+      };
+
+      TrainingMock.prototype.then = function(callback) {
+        callback(expectedTraining);
+        return this;
+      };
+
       // Act
       trainingsController.getById(req, res);
 
       // Assert
-      const resStatusSpy = <sinon.SinonSpy>res.status;
-      const resSendSpy = <sinon.SinonSpy>res.send;
-      expect(resSendSpy.calledWith(trainingModel)).to.be.true;
-      expect(resStatusSpy.calledWith(200)).to.be.true;
-      expect(TrainingMock.getTrainingById.calledWith(id)).to.be.true;
+      const statusSpy = <sinon.SinonSpy>res.status;
+      const sendSpy = <sinon.SinonSpy>res.send;
+      expect(statusSpy.calledWith(200)).to.be.true;
+      expect(sendSpy.calledWith(expectedTraining)).to.be.true;
+    });
+
+    it('should return a 400 when find training fail', () => {
+      // Arrange
+      const Training: Model<TrainingModel> = new TrainingMock();
+
+      const trainingsController = TrainingsController(Training);
+
+      const req: Request = <Request><any>{
+        params: {
+          id: 'wrong id',
+        },
+      };
+      const res: Response = <Response><any>{
+        sendStatus: sinon.spy(function() { return this; }),
+      };
+
+      const expectedTraining: Partial<TrainingModel> = {
+        id: req.params.id,
+        name: 'test name',
+        markdownContent: 'test markdownContent',
+        files: [],
+      };
+
+      TrainingMock.prototype.catch = function(callback) {
+        callback();
+        return this;
+      };
+
+      // Act
+      trainingsController.getById(req, res);
+
+      // Assert
+      const sendStatusSpy = <sinon.SinonSpy>res.sendStatus;
+      expect(sendStatusSpy.calledWith(400)).to.be.true;
     });
   });
 });

@@ -6,7 +6,8 @@ export const TrainingsController = (Training: Model<TrainingModel>) => {
   const getById = (req: Request, res: Response) => {
     Training.findById(req.params.id)
       .exec()
-      .then(handleGetById(res));
+      .then(handleGetById(res))
+      .catch(() => res.sendStatus(400));
   };
 
   return {
