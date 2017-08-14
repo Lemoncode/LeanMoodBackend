@@ -7,7 +7,7 @@ interface MyConnection extends mongoose.ConnectionOptions {
   useMongoClient?: boolean;
   poolSize: number;
 }
-
+// https://github.com/Automattic/mongoose/issues/5442
 const option: MyConnection = {
   poolSize: 5,
   useMongoClient: env.NODE_ENV === 'production',
