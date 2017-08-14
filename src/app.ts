@@ -14,10 +14,10 @@ app.use(cookieParser());
 // fine tune the origing domain, etc...
 // https://www.npmjs.com/package/cors
 // https://stackoverflow.com/questions/7067966/how-to-allow-cors
-app.use(cors({credentials: true, origin: true}));
-
+app.use(cors({ credentials: true, origin: true }));
 
 app.use('/api/login', loginRouter());
 app.listen(env.PORT);
 
+// tslint:disable-next-line:no-console
 console.log(`Running on port ${env.PORT}`);

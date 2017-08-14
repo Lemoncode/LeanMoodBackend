@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import { LoginController } from './controller';
 import { Model } from 'mongoose';
-import { LoginModel } from "../../models/Login";
-import { UserModel } from "../../models/user";
+import { LoginModel } from '../../models/Login';
+import { UserModel } from '../../models/user';
 import { Request, Response } from 'express';
 import * as models from '../../models';
 
@@ -47,7 +47,7 @@ describe('LoginController test', () => {
         {
           body: {
             password: 'test',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
@@ -57,7 +57,7 @@ describe('LoginController test', () => {
       const loginController = LoginController(Login, User);
 
       // Act
-      loginController.post(req, res)
+      loginController.post(req, res);
 
       // Assert
       const spyResStatus = <sinon.SinonSpy>res.status;
@@ -74,7 +74,7 @@ describe('LoginController test', () => {
         {
           body: {
             email: 'jai',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
@@ -102,13 +102,13 @@ describe('LoginController test', () => {
           body: {
             email: 'jai',
             password: 'test',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
-        status: sinon.spy(function() { return this }),
-        send: sinon.spy(function() { return this }),
-        sendStatus: sinon.spy(function() { return this }),
+        status: sinon.spy(function() { return this; }),
+        send: sinon.spy(function() { return this; }),
+        sendStatus: sinon.spy(function() { return this; }),
       });
 
       LoginMock.prototype.then = function(callback) {
@@ -140,13 +140,13 @@ describe('LoginController test', () => {
           body: {
             email: 'test email',
             password: 'test password',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
-        status: sinon.spy(function() { return this }),
-        send: sinon.spy(function() { return this }),
-        sendStatus: sinon.spy(function() { return this }),
+        status: sinon.spy(function() { return this; }),
+        send: sinon.spy(function() { return this; }),
+        sendStatus: sinon.spy(function() { return this; }),
       });
 
       LoginMock.prototype.then = function(callback) {
@@ -156,7 +156,7 @@ describe('LoginController test', () => {
 
       const expectedUser: Partial<UserModel> = {
         email: 'test email',
-        role: 'test role'
+        role: 'test role',
       };
 
       UserMock.prototype.then = function(callback) {
@@ -185,13 +185,13 @@ describe('LoginController test', () => {
           body: {
             email: 'jai',
             password: 'test',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
-        status: sinon.spy(function() { return this }),
-        send: sinon.spy(function() { return this }),
-        sendStatus: sinon.spy(function() { return this }),
+        status: sinon.spy(function() { return this; }),
+        send: sinon.spy(function() { return this; }),
+        sendStatus: sinon.spy(function() { return this; }),
       });
 
       LoginMock.prototype.then = function(callback) {
@@ -218,13 +218,13 @@ describe('LoginController test', () => {
           body: {
             email: 'wrong email',
             password: 'test password',
-          }
+          },
         }
       );
       const res: Response = <Response><any>({
-        status: sinon.spy(function() { return this }),
-        send: sinon.spy(function() { return this }),
-        sendStatus: sinon.spy(function() { return this }),
+        status: sinon.spy(function() { return this; }),
+        send: sinon.spy(function() { return this; }),
+        sendStatus: sinon.spy(function() { return this; }),
       });
 
       LoginMock.prototype.catch = function(callback) {

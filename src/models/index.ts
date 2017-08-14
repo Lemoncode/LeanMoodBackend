@@ -8,4 +8,3 @@ import { Model } from 'mongoose';
 export const Login: Model<LoginModel> = connectionAccess.model<LoginModel>('Login', loginSchema);
 export const User: Model<UserModel> = connection.model<UserModel>('User', userSchema);
 export const Training: Model<TrainingModel> = connection.model<TrainingModel>('Training', trainingSchema);
-

@@ -2,17 +2,17 @@ import * as mongoose from 'mongoose';
 import { TrainingModel, trainingSchema } from './Training';
 
 export interface UserModel extends mongoose.Document {
-  email: string,
-  name: string,
-  lastName: string,
-  avatar: string,
-  role: string,
-  trainings: [
-    {
-      role: string,
-      trainingId: string,
-    }
-  ],
+  email: string;
+  name: string;
+  lastName: string;
+  avatar: string;
+  role: string;
+  trainings: UserTraining[];
+}
+
+interface UserTraining {
+  role: string;
+  trainingId: string;
 }
 
 export const userSchema = new mongoose.Schema({
@@ -25,6 +25,6 @@ export const userSchema = new mongoose.Schema({
     {
       role: String,
       trainingId: String,
-    }
+    },
   ],
 });

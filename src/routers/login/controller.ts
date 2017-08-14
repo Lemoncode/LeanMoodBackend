@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { LoginModel } from "../../models/Login";
-import { UserModel } from "../../models/User";
+import { LoginModel } from '../../models/Login';
+import { UserModel } from '../../models/User';
 
 export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>) => {
   const handlerPost = (req: Request, res: Response) => (result: LoginModel) => {
@@ -14,21 +14,21 @@ export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>
     User.findOne({ email: loginModel.email })
       .exec()
       .then(handleUserRequest(res))
-      .catch(() => res.sendStatus(400))
+      .catch(() => res.sendStatus(400));
   };
 
   const handleUserRequest = (res: Response) => (userModel: UserModel) => {
     res.status(201)
       .send(userModel);
-  }
+  };
 
   const accessDenied = (res: Response) => {
     res.sendStatus(401);
-  }
+  };
 
   const post = (req: Request, res: Response) => {
     if (req.body.email && req.body.password) {
-      Login.findOne({ 'email': req.body.email })
+      Login.findOne({ email: req.body.email })
         .exec()
         .then(handlerPost(req, res))
         .catch(() => res.sendStatus(401));
@@ -39,6 +39,6 @@ export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>
   };
 
   return {
-    post
-  }
+    post,
+  };
 };
