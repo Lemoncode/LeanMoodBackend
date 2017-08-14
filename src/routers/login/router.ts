@@ -1,13 +1,15 @@
 import { Router } from 'express';
-import {trainingRouter} from './training/router';
+import * as mongoose from 'mongoose';
+import { LoginController } from './controller';
+import { Login, User } from '../../models';
 
-export const loginRouter = Router();
-loginRouter.use('/training', trainingRouter);
+export const loginRouter = () => {
+  const router = Router();
+  const logincontroller = LoginController(Login, User);
+  router.route('/')
+    .post(logincontroller.post);
 
-loginRouter.route('/')
-  //TODO: Replace by POST
-  .get((req, res) => {
-    res.send('Login success!');
-  });
+  return router;
+};
 
 

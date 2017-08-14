@@ -1,4 +1,6 @@
 export const env = {
-  LM_NODE_ENV: process.env.NODE_ENV || "development",
-  LM_PORT: process.env.LM_PORT || 8081,
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  PORT: process.env.PORT || 8081,
+  MONGODB_CONNECTION_ACCESS: process.env.MONGODB_CONNECTION_ACCESS || 'mongodb://localhost/leanMoodAccess',
+  MONGODB_CONNECTION: process.env.MONGODB_CONNECTION || 'mongodb://localhost/leanMood',
 };
