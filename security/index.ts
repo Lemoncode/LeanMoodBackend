@@ -1,1 +1,1 @@
-export { randomString } from './lib/utility';
+export * from './lib';
