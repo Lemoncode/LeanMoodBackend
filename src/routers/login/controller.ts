@@ -13,21 +13,18 @@ export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>
   };
 
   const accessGrant = (res: Response, loginModel: LoginModel) => {
-    const securityToken = randomString(18);
-    generateCookie(res, env.ACCESS_TOKEN_HEADER, securityToken);
-    res.sendStatus(201);
-    // User.findOne({ email: loginModel.email })
-    //   .exec()
-    //   .then(handleUserRequest(res))
-    //   .catch(() => res.sendStatus(400));
+    User.findOne({ email: loginModel.email })
+      .exec()
+      .then(handleUserRequest(res))
+      .catch(() => res.sendStatus(400));
   };
 
-  // const handleUserRequest = (res: Response) => (userModel: UserModel) => {
-  //   const securityToken = randomString(18);
-  //   generateCookie(res, env.ACCESS_TOKEN_HEADER, securityToken);
-  //   res.status(201)
-  //     .send(securityToken);
-  // };
+  const handleUserRequest = (res: Response) => (userModel: UserModel) => {
+    const securityToken = randomString(18);
+    generateCookie(res, env.ACCESS_TOKEN_HEADER, securityToken);
+    res.status(201)
+      .send(securityToken);
+  };
 
   const accessDenied = (res: Response) => {
     res.sendStatus(401);
