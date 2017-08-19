@@ -42,7 +42,12 @@ export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>
     }
   };
 
+  const get = (req: Request, res: Response) => {
+    res.send(req.cookies[env.ACCESS_TOKEN_HEADER]);
+  };
+
   return {
     post,
+    get,
   };
 };
