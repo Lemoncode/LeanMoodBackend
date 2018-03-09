@@ -3,12 +3,12 @@ import { env } from '../env.config';
 
 (<any>mongoose).Promise = Promise;
 
-interface MyConnection extends mongoose.ConnectionOptions {
+interface EnvironmentConnection extends mongoose.ConnectionOptions {
   useMongoClient?: boolean;
   poolSize: number;
 }
 // https://github.com/Automattic/mongoose/issues/5442
-const option: MyConnection = {
+const option: EnvironmentConnection = {
   poolSize: 5,
   useMongoClient: env.NODE_ENV === 'production',
 };

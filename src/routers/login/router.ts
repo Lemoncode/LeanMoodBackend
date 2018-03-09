@@ -7,8 +7,7 @@ export const loginRouter = () => {
   const router = Router();
   const logincontroller = LoginController(Login, User);
   router.route('/')
-    .post(logincontroller.post)
-    .get(logincontroller.get);
+    .post(logincontroller.post);
 
   return router;
 };
