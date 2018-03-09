@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { Model } from 'mongoose';
 import { LoginModel } from '../../models/Login';
 import { UserModel } from '../../models/User';
-
 export const LoginController = (Login: Model<LoginModel>, User: Model<UserModel>) => {
   const handlerPost = (req: Request, res: Response) => (result: LoginModel) => {
     (result.password === req.body.password) ?
